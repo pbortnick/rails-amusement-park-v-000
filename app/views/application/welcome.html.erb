@@ -1,0 +1,13 @@
+<h1>Welcome to the Amusement Park!</h1>
+
+<% if @current_user.blank? %>
+  <li><%= link_to "Sign In", signin_path %></li>
+  <li><%= link_to "Sign Up", signup_path %></li>
+<% else %>
+  <% if @current_user.admin? %>
+    <li><%= link_to "ADMIN", "#" %></li>
+  <% end %>
+  <li><%= link_to @current_user.name, user_path(@current_user) %></li>
+  <li><%= link_to "Attractions", attractions_path %></li>
+  <li><%= link_to "Log Out", signout_path, method: :delete %></li>
+<% end %>
